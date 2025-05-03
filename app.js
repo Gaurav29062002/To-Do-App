@@ -15,8 +15,10 @@ app.post('/todos', (req, res) => {
 });
 
 app.delete('/todos/:index', (req, res) => {
-  todos.deleteTodo(parseInt(req.params.index));
-  res.json({ message: 'Todo deleted.' });
+    const index = parseInt(req.params.index);
+    deleteTodo(index);  // This calls the function from todos.js
+    res.status(200).json(getTodos());  // Responds with the updated list
 });
+  
 
 module.exports = app;
